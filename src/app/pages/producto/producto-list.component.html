@@ -1,0 +1,15 @@
+<div class="pagina-listado">
+    <h1 class="pagina-listado__titulo">{{ title }}</h1>
+
+    <div style="margin-bottom: 10px;">
+        <app-seccion-filtros #filtrosListado [filtersData]="filterDefs" (onSearch)="onSearch($event)"/>
+    </div>
+
+    <app-my-grid #grid
+        [service]="productService"
+        [editable]="true"
+        [modelConstructor]="ProductDto"
+        [controlsConfig]="controlsConfig"
+        [columns]="columns">
+    </app-my-grid>
+</div>

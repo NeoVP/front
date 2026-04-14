@@ -1,0 +1,38 @@
+@if(formControl){
+<kendo-combobox
+    [data]="items()"
+    [textField]="config.textField!"
+    [valueField]="config.valueField!"
+    [formControl]="formControl!"
+    [valuePrimitive]="config.valuePrimitive!"
+    [loading]="loading()"
+    [disabled]="config.disabled!"
+    [readonly]="config.readonly!"
+    [filterable]="config.filterable!"
+    [allowCustom]="config.allowCustom!"
+    [placeholder]="config.placeholder!"
+    (open)="onOpen()"
+    (close)="onClose()"
+    (filterChange)="onFilterChange($event)"
+    (valueChange)="handleValueChange($event)">
+</kendo-combobox>
+}
+@else {
+<kendo-combobox
+    [data]="items()"
+    [textField]="config.textField!"
+    [valueField]="config.valueField!"
+    [value]="value()"
+    [valuePrimitive]="config.valuePrimitive!"
+    [loading]="loading()"
+    [disabled]="config.disabled!"
+    [readonly]="config.readonly!"
+    [filterable]="config.filterable!"
+    [allowCustom]="config.allowCustom!"
+    [placeholder]="config.placeholder!"
+    (open)="onOpen()"
+    (close)="onClose()"
+    (filterChange)="onFilterChange($event)"
+    (valueChange)="handleValueChange($event)">
+</kendo-combobox>
+}

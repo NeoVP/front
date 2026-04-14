@@ -1,0 +1,11 @@
+ <kendo-datetimepicker
+    [(ngModel)]="value"
+    [min]="config.min!"
+    [max]="config.max!"
+    [format]="config.format!"
+    [disabled]="config.disabled!"
+    [placeholder]="config.placeholder!"
+    (valueChange)="onValueChange($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()">
+</kendo-datetimepicker>

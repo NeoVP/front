@@ -1,0 +1,73 @@
+/* Highlight expanded items with primary theme colors */
+.k-panelbar > .k-panelbar-header.k-expanded > .k-link {
+  color: var(--kendo-color-on-primary, #ffffff) !important;
+  background-color: var(--kendo-color-primary, #ff6358) !important;
+}
+
+/* Ensure non-expanded items use default styling */
+.k-panelbar > .k-panelbar-header > .k-link {
+  color: var(--kendo-color-on-primary, #ffffff) !important;
+  background-color: var(--kendo-color-primary, #ff6358) !important;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 1rem 0.5rem;
+}
+
+.filtros__campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 180px;
+    flex: 1 1 180px;
+}
+
+.filtros__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Fila 2: botones */
+.filtros__acciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #e0e0e0;
+    background: #fafafa;
+}
+
+.filtros__btn-buscar,
+.filtros__btn-limpiar {
+    padding: 0.4rem 1.1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background 0.15s;
+}
+
+.filtros__btn-buscar {
+    background: #4285f4;
+    color: #fff;
+    border-color: #4285f4;
+}
+
+.filtros__btn-buscar:hover {
+    background: #3367d6;
+}
+
+.filtros__btn-limpiar {
+    background: #fff;
+}
+
+.filtros__btn-limpiar:hover {
+    background: #f5f5f5;
+}

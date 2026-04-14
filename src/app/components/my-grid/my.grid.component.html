@@ -1,0 +1,122 @@
+@if (editable) {
+    <kendo-grid #grid
+        myDataBinding
+        [service]="service"
+        [pageSize]="pageSize"
+        [skip]="skip"
+        [pageable]="true"
+        [sortable]="true"
+        [sort]="sortDescriptor"
+        [filterable]="'menu'"
+        [filter]="filterDescriptor"
+        [height]="400"
+        (dblclick)="onDblClick()"
+        (cellClick)="cellClickHandler($event)"
+        (cellClose)="cellCloseHandler($event)"
+        (cancel)="cancelHandler($event)"
+        (save)="saveHandler($event)"
+        (remove)="removeHandler($event)"
+        (add)="addHandler($event)"
+        >
+
+        <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand>Add new</button>
+            <button
+                kendoButton
+                [disabled]="editando || !hasChanges()"
+                (click)="saveChanges(grid)"
+            >
+                Save Changes
+            </button>
+            <button
+                kendoButton
+                [disabled]="editando || !hasChanges()"
+                (click)="cancelChanges(grid)"
+            >
+                Cancel Changes
+            </button>
+        </ng-template>
+
+        @for (column of columns; track column.field) {
+            <kendo-grid-column
+                [field]="column.field" 
+                [title]="column.title"
+                [format]="column.format || null"
+                [sortable]="column.sortable"
+                [filter]="toKendoFieldType(column.type)"
+                [filterable]="column.filterable"
+                [sortable]="column.sortable"
+                [editable]="column.editable"
+                [editor]="column.type"
+                [width]="column.width"
+                >
+                @if(column.type === 'boolean') {
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <input type="checkbox" [checked]="dataItem[column.field]" disabled />
+                    </ng-template>
+                }
+                @if(column.customEditor) {
+                    <ng-template
+                        kendoGridEditTemplate
+                        let-dataItem="dataItem"
+                        let-formGroup="formGroup"
+                    >
+                        <app-my-combobox style="width: 100px;"
+                            [config]="column.customEditor"
+                            (configInit)="column.customEditor = $event"
+                            [formControl]="formGroup.get(column.customEditor.field)">
+                        </app-my-combobox>
+                    </ng-template>
+                }
+            </kendo-grid-column>
+        }
+
+           <kendo-grid-command-column [width]="220">
+                <ng-template kendoGridCellTemplate let-isNew="isNew">
+                    <button kendoGridRemoveCommand>Remove</button>
+                    <button kendoGridSaveCommand>Add</button>
+                    <button kendoGridCancelCommand>Cancel</button>
+                </ng-template>
+            </kendo-grid-command-column>
+        
+    </kendo-grid>
+}
+@else {
+    <kendo-grid #grid
+        myDataBinding
+        [service]="service"
+        [pageSize]="pageSize"
+        [skip]="skip"
+        [pageable]="true"
+        [sortable]="true"
+        [sort]="sortDescriptor"
+        [filterable]="'menu'"
+        [filter]="filterDescriptor"
+        [height]="400"
+        >
+        @for (column of columns; track column.field) {
+            <kendo-grid-column
+                [field]="column.field" 
+                [title]="column.title"
+                [format]="column.format || null"
+                [sortable]="column.sortable"
+                [filter]="toKendoFieldType(column.type)"
+                [filterable]="column.filterable"
+                [sortable]="column.sortable"
+                [editable]="column.editable"
+                [editor]="column.type"
+                [width]="column.width"
+                >
+                @if(column.type === 'boolean') {
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <input type="checkbox" [checked]="dataItem[column.field]" disabled />
+                    </ng-template>
+                }
+            </kendo-grid-column>
+        }
+    </kendo-grid>
+}
+
+<ng-template #columnDefs>
+    
+</ng-template>

@@ -1,0 +1,19 @@
+@if (!config) {
+    <p>Config is required for MyComboBoxComponent</p>
+} @else {
+<kendo-dropdownlist
+    [data]="items()"
+    [textField]="config.textField!"
+    [valueField]="config.valueField!"
+    [(ngModel)]="value"
+    [valuePrimitive]="config.valuePrimitive!"
+    [loading]="loading()"
+    [disabled]="config.disabled!"
+    [readonly]="config.readonly!"
+    [filterable]="config.filterable!"
+    (open)="onOpen()"
+    (close)="onClose()"
+    (filterChange)="onFilterChange($event)"
+    (valueChange)="onValueChange($event)">
+</kendo-dropdownlist>
+}

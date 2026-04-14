@@ -1,0 +1,14 @@
+<kendo-numerictextbox
+    [(ngModel)]="value"
+    [min]="config.min!"
+    [max]="config.max!"
+    [step]="config.step!"
+    [format]="config.format!"
+    [decimals]="config.decimals!"
+    [disabled]="config.disabled!"
+    [readonly]="config.readonly!"
+    [placeholder]="config.placeholder!"
+    (valueChange)="onValueChange($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()">
+</kendo-numerictextbox>

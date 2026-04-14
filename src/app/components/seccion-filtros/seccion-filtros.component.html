@@ -1,0 +1,79 @@
+<kendo-panelbar>
+    <kendo-panelbar-item title="Filtros" [expanded]="true">
+        <ng-template kendoPanelBarContent>
+
+            <div class="filtros">
+                @for (descriptor of filtersData; track descriptor.field) {
+                    
+                        <div class="filtros__campo">
+                            <label class="filtros__label">{{ descriptor.label }}</label>
+
+                            @if (descriptor.type === 'text' && descriptor.props) {
+                                <input class="k-input" type="text"
+                                    [(ngModel)]="descriptor.value"
+                                    [disabled]="descriptor.props.disabled ?? false"
+                                    [placeholder]="descriptor.props.placeholder"
+                                    [maxlength]="descriptor.props.maxLength ?? null"
+                                    (ngModelChange)="descriptor.props.onValueChange?.($event)" />
+                            }
+
+                            @if (descriptor.type === 'numeric' && descriptor.props) {
+                                <app-my-numeric-textbox
+                                    [(value)]="descriptor.value"
+                                    [config]="descriptor.props">
+                                </app-my-numeric-textbox>
+                            }
+
+                            @if (descriptor.type === 'date' && descriptor.props) {
+                                <app-my-datetime-picker
+                                    [(value)]="descriptor.value"
+                                    [config]="descriptor.props">
+                                </app-my-datetime-picker>
+                            }
+
+                            @if (descriptor.type === 'boolean' && descriptor.props) {
+                                <input type="checkbox"
+                                    [(ngModel)]="descriptor.value"
+                                    [disabled]="descriptor.props.disabled ?? false"
+                                    [readonly]="descriptor.props.readonly"
+                                    style="width: 15px;"
+                                    (ngModelChange)="descriptor.props.onValueChange?.($event)" />
+                            }
+
+                            @if (descriptor.type === 'dropdown' && descriptor.props) {
+                                <app-my-dropdown
+                                    [(value)]="descriptor.value"
+                                    [config]="descriptor.props"
+                                    (configInit)="descriptor.props = $event">
+                                </app-my-dropdown>
+                            }
+
+                            @if (descriptor.type === 'combo' && descriptor.props) {
+                                <app-my-combobox
+                                    [(value)]="descriptor.value"
+                                    [config]="descriptor.props"
+                                    (configInit)="descriptor.props = $event">
+                                </app-my-combobox>
+                            }
+
+                            @if (descriptor.type === 'multi' && descriptor.props) {
+                                <app-my-multiselect
+                                    [(value)]="descriptor.value"
+                                    [config]="descriptor.props"
+                                    (configInit)="descriptor.props = $event">
+                                </app-my-multiselect>
+                            }
+
+                        </div>
+                    
+                }
+            </div>
+
+            <div class="filtros__acciones">
+                <button class="filtros__btn-buscar"  (click)="onSearchClick()">🔍 Buscar</button>
+                <button class="filtros__btn-limpiar" (click)="onClearClick()">✕ Limpiar filtros</button>
+            </div>
+
+        </ng-template>
+    </kendo-panelbar-item>
+</kendo-panelbar>
